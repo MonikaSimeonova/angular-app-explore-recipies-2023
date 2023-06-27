@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/styles.css" type="text/css" rel="stylesheet">
+    <link href="styles.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -21,7 +21,7 @@
                 <li><a href="#">Add</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li class="reg-nav"><a href="#">Register</a></li>
             </ul>
         </nav>
     </section>
@@ -33,12 +33,36 @@
             <div class="explore-btn">
                 <a href="#">Explore</a>
             </div>
-            
+
         </div>
         <div class="homeImg">
             <img src="./images/pexels-photo-7493245.jpeg" alt="homeImg">
         </div>
-
+    </section>
+    <section class="register">
+        <h1>Register Here</h1>
+        <form class="register-form" action="#">
+            <label for="username">Username</label>
+            <input type="text" placeholder="Enter username">
+            <label for="email">Email</label>
+            <input type="text" placeholder="Enter your email">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter password">
+            <label for="rePassword">Repeat Password</label>
+            <input type="password" placeholder="Repeat password">
+            <input type="submit" value="Register">
+        </form>
+    </section>
+    <section class="register">
+        <h1>Login</h1>
+        <form class="register-form" action="#">
+            <label for="email">Email</label>
+            <input type="text" placeholder="Enter your email">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter password">
+            <input type="submit" value="Login">
+            <label for="text">Don't have an account?  <a class="to-btn-reg" href="#">Register</a></label>
+        </form>
     </section>
 
 
