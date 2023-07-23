@@ -1,0 +1,71 @@
+.recipies {
+    text-align: center;
+    background-color: #c9cbce;
+    max-width: 1200px;
+   padding-top: 10px;
+   padding-bottom: 190px;
+}
+
+.recipies h1 {
+    margin-top: 20px;
+    font-size: 38px;
+    font-weight: 500;
+    color: rgb(81, 148, 60);
+}
+
+.recipies p {
+    font-size: 25px;
+    font-weight: 400;
+    color: rgb(44, 83, 32);
+    margin-bottom: 20px;
+}
+
+.recipies .recipie {
+    width: 23%;
+    min-width: 200px;
+    padding: 10px 12px;
+    border: 1px solid rgb(122, 119, 119);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    background-color: #a4a7ac;
+    box-shadow: 1px 1px #888888;
+}
+
+.rec-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.recipies .recipie .imgRec img {
+    border-radius: 20px;
+    display: block;
+    width: 100%;
+}
+
+.recipie .imgRec {
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    width: auto;
+    height: 200px;
+}
+
+.recipie .description h5 {
+    font-size: 20px;
+    color: rgb(49, 37, 37);
+}
+
+.recipie .description a {
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 4px 5px;
+    border-radius: 5px;
+}
+
+.recipie .description a:hover {
+    color: rgb(30, 28, 28);
+    background-color: rgb(141, 162, 177);
+    box-shadow: 1px 1px #656565;
+}
