@@ -25,10 +25,12 @@
 #navbar li a,
 .logo a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 #navbar li a:hover {
     color: rgb(95, 95, 95);
+    cursor: pointer;
 }
 
 .logo {

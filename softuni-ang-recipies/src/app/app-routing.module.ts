@@ -5,7 +5,8 @@ import { RecipiesComponent } from './recipies/recipies.component';
 import { HomeComponent } from './core/home/home.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', pathMatch: 'full', redirectTo: '/home'},
+  {path: 'home', component: HomeComponent},
   {path: 'recipies', component: RecipiesComponent}
 ];
 

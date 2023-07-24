@@ -8,16 +8,13 @@ import { RecipiesService } from '../recipies.service';
 })
 export class RecipiesComponent implements OnInit {
   //interface add
-  recipiesList: any //check later
+  recipiesList: any; //check later
   constructor(private recipiesService: RecipiesService) {}
 
   ngOnInit(): void {
     this.recipiesService.getRecipies().subscribe((recipies) => {
-   
-      
       this.recipiesList = recipies;
-      console.log( this.recipiesList);
-      
+      console.log(this.recipiesList);
     });
   }
 }

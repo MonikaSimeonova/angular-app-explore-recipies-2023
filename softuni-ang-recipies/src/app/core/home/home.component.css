@@ -53,6 +53,7 @@
 
 .textHome a:hover {
     background-color: rgba(184, 95, 71, 0.968);
+    cursor: pointer;
 }
 
 .homeImg img {
