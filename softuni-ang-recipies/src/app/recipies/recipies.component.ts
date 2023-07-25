@@ -14,7 +14,8 @@ export class RecipiesComponent implements OnInit {
   ngOnInit(): void {
     this.recipiesService.getRecipies().subscribe((recipies) => {
       this.recipiesList = recipies;
-      console.log(this.recipiesList);
+      
+      
     });
   }
 }

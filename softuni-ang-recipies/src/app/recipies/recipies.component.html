@@ -2,13 +2,13 @@
     <h1>Explore the best recipies</h1>
     <p>Healthy, delicious and easy to make</p>
     <div class="rec-container">
-        <div class="recipie" *ngFor="let recipie of recipiesList, let i = index">
+        <div class="recipie" *ngFor="let recipie of recipiesList, let id = index">
             <div class="imgRec">
-                <img src="{{recipie.image}}" alt="meat">
+                <img src="{{recipie.image}}" alt="{{recipie.title}}">
             </div>
             <div class="description">
                 <h5>{{recipie.title}}</h5>
-                <a routerLink="/recipie/{{i}}">Check it out</a>
+                <a routerLink="/recipie/{{recipie.title}}">Check it out</a>
             </div>
         </div>
       

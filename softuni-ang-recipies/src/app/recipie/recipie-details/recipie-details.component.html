@@ -1,0 +1,28 @@
+<section class="recipie-details about-us" >
+
+    <h1>{{recipie.title}}</h1>
+
+    <div class="container-details">
+        <img src="{{recipie.image}}" alt="{{recipie.title}}">
+        <div class="description-about-u ">
+            <h5>Ingridients</h5>
+            <p>{{recipie.products}}</p>
+            <h5>time</h5>
+            <p>{{recipie.time}} minutes</p>
+            <h5>Skills level</h5>
+            <p>{{recipie.cook}}</p>
+        </div>
+        
+    </div>
+    <div class="comments-details">
+        <h5>User</h5>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+
+        <h5>CurrentUser</h5>
+        <form>
+            <label for="comment">Add comment</label>
+            <textarea cols="30" rows="5"></textarea>
+            <input type="submit" value="Publish">
+        </form>
+    </div>
+</section>
