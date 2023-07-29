@@ -1,11 +1,32 @@
 <section class="register">
-    <h1>Login</h1>
-    <form class="register-form" action="#">
-        <label for="email">Email</label>
-        <input type="text" placeholder="Enter your email">
-        <label for="password">Password</label>
-        <input type="password" placeholder="Enter password">
-        <input type="submit" value="Login">
-        <label for="text">Don't have an account? <a class="to-btn-reg" routerLink="/register">Register</a></label>
-    </form>
+  <h1>Login</h1>
+  <form class="register-form" [formGroup]="form" (ngSubmit)="login()">
+    <label for="email">Email</label>
+    <input type="text" placeholder="Enter your email" formControlName="email" />
+    <ng-container >
+      <p class="error" *ngIf="form.get('email')?.errors?.['required']">
+        Username is required!
+      </p>
+    
+    </ng-container>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      placeholder="Enter password"
+      formControlName="password"
+    />
+
+    <ng-container >
+      <p class="error" *ngIf="form.get('password')?.errors?.['required']">
+        Password is required!
+      </p>
+      
+    </ng-container>
+    
+    <input type="submit" value="Login" />
+    <label for="text"
+      >Don't have an account?
+      <a class="to-btn-reg" routerLink="/register">Register</a></label
+    >
+  </form>
 </section>

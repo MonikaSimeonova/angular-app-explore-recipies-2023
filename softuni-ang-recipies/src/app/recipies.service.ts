@@ -13,7 +13,7 @@ export class RecipiesService  {
   getRecipies() {
     //interface add
     const url = 'https://softuni-angular-recipies-default-rtdb.firebaseio.com/recipies.json'
-    return this.http.get(url)
+    return this.http.get<Recipies>(url)
   }
   getRecipieDetails(id: string){
     const url = `https://softuni-angular-recipies-default-rtdb.firebaseio.com/recipies/${id}.json`

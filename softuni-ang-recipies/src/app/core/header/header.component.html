@@ -1,13 +1,19 @@
 <section class="header" id="header">
     <li class="logo"><a routerLink="/home">DELICIOUS FOOD</a></li>
-    <nav>
-        <ul id="navbar">
+    <nav >
+        <ul id="navbar" *ngIf="!isLoggedIn" >
             <li><a routerLink="/home">Home</a></li>
             <li><a routerLink="/recipies">Recipies</a></li>
             <li><a routerLink="/add">Add</a></li>
-            <li><a href="#">About</a></li>
             <li><a routerLink="/login">Login</a></li>
             <li class="reg-nav"><a routerLink="/register">Register</a></li>
+        </ul>
+        <ul id="navbar" *ngIf="isLoggedIn" >
+            <li><a routerLink="/home">Home</a></li>
+            <li><a routerLink="/recipies">Recipies</a></li>
+            <li><a routerLink="/add">Add</a></li>
+            <li><a routerLink="/profile">{{emailUser}}</a></li>
+            <li class="reg-nav"><a (click)="onLogout()">Logout</a></li>
         </ul>
     </nav>
 </section>

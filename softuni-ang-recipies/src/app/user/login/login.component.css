@@ -76,3 +76,7 @@
     color: rgb(141, 22, 22);
     transition: 0.3s ease;
 }
+.error{
+    color: rgb(220, 46, 46);
+    font-weight: 500;
+}
