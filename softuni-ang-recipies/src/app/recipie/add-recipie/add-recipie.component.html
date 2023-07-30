@@ -1,17 +1,42 @@
 <section class="register" id="create">
     <h1>Add New Recipie</h1>
-    <form class="register-form" id="createRec" action="#">
+    <form class="register-form" id="createRec" [formGroup]="form" (ngSubmit)="addRecipie()">
         <label for="name">Recipie Name</label>
-        <input type="text" placeholder="Enter recipie name">
+        <input type="text" placeholder="Enter recipie name" formControlName="title">
+        <ng-container>
+            <p class="error" *ngIf="form.get('title')?.errors?.['required']">
+                Recipie Name Is Required
+            </p>
+        </ng-container>
         <label for="name">Recipie Photo</label>
-        <input type="url" placeholder="Add link to recipie photo">
+        <input type="url" placeholder="Add link to recipie photo" formControlName="image">
+        <ng-container>
+            <p class="error" *ngIf="form.get('image')?.errors?.['required']">
+                Image Is Required
+            </p>
+        </ng-container>
         <label for="time">Cook time in minutes</label>
-        <input type="number" placeholder="How long until cooked">
+        <input type="number" placeholder="How long until cooked" formControlName="time">
+        <ng-container>
+            <p class="error" *ngIf="form.get('time')?.errors?.['required']">
+                Cooking Time Is Required
+            </p>
+        </ng-container>
         <label for="name">Skills Level</label>
-        <input type="text" placeholder="Enter skills level">
+        <input type="text" placeholder="Enter skills level" formControlName="cook">
+        <ng-container>
+            <p class="error" *ngIf="form.get('cook')?.errors?.['required']">
+                Skills to Cook a Recipie Is Required
+            </p>
+        </ng-container>
         <label for="rePassword">Ingredients</label>
         <textarea name="description" id="textarea-description-ingredients" cols="6" rows="5"
-            placeholder="What are the ingredients"></textarea>
+            placeholder="What are the ingredients" formControlName="products"></textarea>
+            <ng-container>
+                <p class="error" *ngIf="form.get('products')?.errors?.['required']">
+                    Products Are Required
+                </p>
+            </ng-container>
         <input type="submit" value="Add">
     </form>
 </section>

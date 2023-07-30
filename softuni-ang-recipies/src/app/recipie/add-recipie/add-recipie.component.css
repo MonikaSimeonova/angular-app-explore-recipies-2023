@@ -85,6 +85,9 @@
     color: black;
     transition: 0.5s ease;
 }
-
+.error{
+    color: rgb(220, 46, 46);
+    font-weight: 500;
+}
 
 

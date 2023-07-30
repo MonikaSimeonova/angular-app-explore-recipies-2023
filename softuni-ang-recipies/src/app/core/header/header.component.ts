@@ -10,20 +10,21 @@ import { AuthUserService } from 'src/app/user/auth-user.service';
 export class HeaderComponent implements OnInit {
   user: User | undefined;
   emailUser = '';
+  uid = '';
 
   constructor(private authUser: AuthUserService) {}
 
   get isLoggedIn(): boolean {
-    console.log(this.authUser.isLogged());
-
     return this.authUser.isLogged();
   }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user')!);
+    console.log( this.user?.uid);
     
     if (this.user) {
-      this.emailUser = this.user?.email;;
+      this.emailUser = this.user?.email;
+      this.uid =  this.user?.uid
     }
   }
 

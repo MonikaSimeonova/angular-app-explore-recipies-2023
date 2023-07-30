@@ -33,8 +33,25 @@ export class AuthUserService {
       });
   }
 
+
+    register(email: string, password: string) {
+    this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        this.loadUser();
+        this.loggedIn = true;
+        this.router.navigate(['/recipies']);
+        console.log('Registered');
+      })
+      .catch((e) => {
+        
+        this.snackBar.open("Wrong Entered Data", "OK", {duration: 5000, })
+      });
+  }
   loadUser() {
     this.afAuth.authState.subscribe((user) => {
+      console.log(user);
+      
       localStorage.setItem(this.USER_KEY, JSON.stringify(user));
     });
   }
@@ -42,7 +59,7 @@ export class AuthUserService {
   logOut() {
     this.afAuth.signOut().then(() => {
       console.log('Logged out');
-      localStorage.removeItem('user');
+      localStorage.removeItem(this.USER_KEY);
       this.loggedIn = false;
       this.router.navigate(['/home']);
     });

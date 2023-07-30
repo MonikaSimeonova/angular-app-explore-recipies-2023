@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipiesService } from '../recipies.service';
+import { Recipies } from '../interfaces/recipies';
 
 @Component({
   selector: 'app-recipies',
@@ -8,14 +9,14 @@ import { RecipiesService } from '../recipies.service';
 })
 export class RecipiesComponent implements OnInit {
   //interface add
-  recipiesList: any; //check later
+  recipiesList: Recipies[] = []; //check later
   constructor(private recipiesService: RecipiesService) {}
 
   ngOnInit(): void {
     this.recipiesService.getRecipies().subscribe((recipies) => {
+      
       this.recipiesList = recipies;
-      
-      
+      this.recipiesList = Object.values(this.recipiesList);
     });
   }
 }

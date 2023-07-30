@@ -31,14 +31,17 @@ export class RecipieDetailsComponent implements OnInit {
     const name = this.activatedRoute.snapshot.params['name'];
 
     const recipieArr: any = [];
+
     this.recipiesService.getRecipies().subscribe((recipie) => {
       recipieArr.push(recipie);
 
       for (let i = 0; i < recipieArr.length; i++) {
         const currentRecipie = recipieArr[i];
+        console.log(Object.values(currentRecipie));
 
-        for (const obj of currentRecipie) {
-          if (obj.title == name) {
+        for (const obj of Object.values(currentRecipie)) {
+          const recipie = obj as any;
+          if (recipie.title == name) {
             this.recipie = obj;
           }
         }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddRecipieComponent } from './add-recipie/add-recipie.component';
 import { RecipiesComponent } from '../recipies/recipies.component';
 import { RecipieDetailsComponent } from './recipie-details/recipie-details.component';
+import { AuthCanActivate } from '../core/guards/can.activate';
 
 const routes: Routes = [
   {
@@ -17,7 +18,7 @@ const routes: Routes = [
       }
     ]
   },
-  {path: 'add', component: AddRecipieComponent},
+  {path: 'add', component: AddRecipieComponent, canActivate: [AuthCanActivate]},
  
 ];
 

@@ -2,7 +2,7 @@
     <h1>Explore the best recipies</h1>
     <p>Healthy, delicious and easy to make</p>
     <div class="rec-container">
-        <div class="recipie" *ngFor="let recipie of recipiesList, let id = index">
+        <div class="recipie" *ngFor="let recipie of recipiesList">
             <div class="imgRec">
                 <img src="{{recipie.image}}" alt="{{recipie.title}}">
             </div>
