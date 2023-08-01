@@ -25,7 +25,8 @@ export class AddRecipieComponent {
 
   addRecipie() {
     const { title, cook, products, image, time } = this.form.value;
-    
+   
+
     this.recipiesService
       .addRecipie(title!, cook!, products!, image!, time!)
       .subscribe(() => {

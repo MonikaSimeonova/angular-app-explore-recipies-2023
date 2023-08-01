@@ -52,19 +52,21 @@
     font-size: 20px;
 }
 
-.register-form input[type=submit] {
+.register-form button {
     text-align: center;
     align-self: center;
     margin-bottom: 25px;
     cursor: pointer;
     background-color: rgba(5, 130, 89, 0.918);
     color: white;
+    padding: 9px 12px;
+    border-radius: 8px;
 }
 
-.register-form input[type=submit]:hover {
+.register-form button:hover {
     background-color: rgba(177, 223, 208, 0.918);
     color: black;
-    transition: 0.5s ease;
+    transition: 0.8s ease;
 }
 
 .register-form .to-btn-reg {

@@ -3,11 +3,13 @@
   <form class="register-form" [formGroup]="form" (ngSubmit)="login()">
     <label for="email">Email</label>
     <input type="text" placeholder="Enter your email" formControlName="email" />
-    <ng-container >
+    <ng-container *ngIf="form.get('email')?.touched">
       <p class="error" *ngIf="form.get('email')?.errors?.['required']">
         Email is required!
       </p>
-    
+      <p class="error" *ngIf="form.get('email')?.errors?.['pattern']">
+        Email is not valid!
+      </p>
     </ng-container>
     <label for="password">Password</label>
     <input
@@ -16,14 +18,13 @@
       formControlName="password"
     />
 
-    <ng-container >
+    <ng-container *ngIf="form.get('password')?.touched">
       <p class="error" *ngIf="form.get('password')?.errors?.['required']">
         Password is required!
       </p>
-      
     </ng-container>
-    
-    <input type="submit" value="Login" />
+
+    <button [disabled]="form.invalid">Login</button>
     <label for="text"
       >Don't have an account?
       <a class="to-btn-reg" routerLink="/register">Register</a></label

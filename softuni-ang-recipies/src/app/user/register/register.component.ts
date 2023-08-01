@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthUserService } from '../auth-user.service';
+import { Router } from '@angular/router';
+import { matchPasswordsValidator } from 'src/app/shared/validators/match-passwords';
+import { emailPattern } from 'src/app/shared/validators/constants';
 
 @Component({
   selector: 'app-register',
@@ -8,23 +11,31 @@ import { AuthUserService } from '../auth-user.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(private fb: FormBuilder, private authService: AuthUserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthUserService,
+    private router: Router
+  ) {}
 
   //add email validator
   form = this.fb.group({
-    email: ['', Validators.required],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    rePassword: ['', [Validators.required, Validators.minLength(6)]],
+    email: ['', [Validators.required, Validators.pattern(emailPattern)]],
+    passGroup: this.fb.group(
+      {
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        rePassword: ['', [Validators.required]],
+      },
+      {
+        validators: [matchPasswordsValidator('password', 'rePassword')],
+      }
+    ),
   });
 
-  register() {
-    if (
-      this.form.value.password !== this.form.value.rePassword ||
-      this.form.invalid
-    ) {
+  register(): void {
+    if (this.form.invalid) {
       return;
     }
-    const { email, password } = this.form.value;
+    const { email, passGroup: { password } = {} } = this.form.value;
     this.authService.register(email!, password!);
   }
 }

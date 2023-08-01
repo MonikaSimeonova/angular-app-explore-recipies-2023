@@ -24,7 +24,7 @@ export class AuthUserService {
       .then(() => {
         this.loadUser();
         this.loggedIn = true;
-        this.router.navigate(['/recipies']);
+        this.router.navigate(['/home']);
         console.log('Logged In');
       })
       .catch((e) => {
@@ -40,7 +40,7 @@ export class AuthUserService {
       .then(() => {
         this.loadUser();
         this.loggedIn = true;
-        this.router.navigate(['/recipies']);
+        this.router.navigate(['/home']);
         console.log('Registered');
       })
       .catch((e) => {

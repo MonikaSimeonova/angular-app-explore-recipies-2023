@@ -3,29 +3,36 @@
     height: 90vh;
     background-color: #c9cbce;
 
-
 }
 .about-us h1{
-  margin-left: 150px;
+    margin-bottom: 50px;
+    padding-top: 30px;
+  text-align: center;
   text-transform: uppercase;
   color: rgb(54, 139, 24);
   text-shadow: 1px 1px #8a8282;
-  font-size: 30px;
-  
+  font-size: 50px; 
 }
+
 .container-details {
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
+    gap: 10px;
     margin-left: 5px;
 }
 
-.container-details img {
-    width: auto;
+.image-border{
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    width: 500px;
     height: 350px;
-    border-radius: 10px;
-    margin-top: 20px;
-    margin-left: 50px;
+    padding-right: 30px;
+}
+.image-border img{
+    border-radius: 20px;
+    display: block;
+    width: 100%;
 }
 
 .container-details h5 {
@@ -39,25 +46,36 @@
     font-size: 18px;
     font-style: italic;
     text-align: justify;
-
     color: rgba(161, 65, 39, 0.968);
 }
-
-.comments-details {
-    margin-right: 10px;
+.description-about-u{
+    padding-right: 30px;
 }
-
-.comments-details p {
-    border: 1px solid rgb(82, 82, 82);
-    padding: 5px;
-}
-
-.comments-details input[type='submit'] {
-    text-align: center;
-    padding: 6px;
-    margin-top: 5px;
+.description-about-u button{
+    margin-top: 35px;
+    margin-left: 30px;
+    font-size: 16px;
+    padding: 8px 20px;
     border-radius: 6px;
-    cursor: pointer;
-    background-color: rgba(5, 130, 89, 0.918);
     color: white;
+    border: solid 1px rgb(207, 200, 200);
 }
+.description-about-u button:hover{
+   cursor: pointer;
+}
+.edit-btn{
+    background-color: #74a662;
+}
+.delete-btn{
+    background-color: #862212;
+}
+.edit-btn:hover{
+    background-color: #8db081;
+    transition: ease 0.3s;
+
+ }
+ .delete-btn:hover{
+    background-color: #9e4032;
+    transition: ease 0.3s;
+}
+

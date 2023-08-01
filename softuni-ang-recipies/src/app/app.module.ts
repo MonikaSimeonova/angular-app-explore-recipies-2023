@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import{AngularFireModule} from '@angular/fire/compat'
-import{AngularFirestoreModule} from '@angular/fire/compat/firestore'
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,25 +13,25 @@ import { UserModule } from './user/user.module';
 import { RecipieModule } from './recipie/recipie.module';
 import { environment } from 'src/environments/environment.development';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotFoundPageModule } from './not-found-page/not-found-module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    RecipiesComponent,
-
-  ],
+  declarations: [AppComponent, RecipiesComponent, ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
-    HttpClientModule,
     CoreModule,
     UserModule,
+    HttpClientModule,
     RecipieModule,
-    BrowserAnimationsModule
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    BrowserAnimationsModule,
+    NotFoundPageModule,
+    SharedModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
