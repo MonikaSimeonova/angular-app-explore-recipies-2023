@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipiesService } from 'src/app/recipies.service';
 
 @Component({
@@ -8,52 +8,33 @@ import { RecipiesService } from 'src/app/recipies.service';
   styleUrls: ['./recipie-details.component.css'],
 })
 export class RecipieDetailsComponent implements OnInit {
-  recipie: any | undefined;
+  recipie: any;
 
   constructor(
     private recipiesService: RecipiesService,
     private activatedRoute: ActivatedRoute,
-    
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.fetchDetails();
   }
 
-  // fetchDetails(): void {
-  //   const id = this.activatedRoute.snapshot.params['id'];
-  //   this.recipiesService.getRecipieDetails(id).subscribe((recipie) => {
-  //     console.log(recipie);
-
-  //     this.recipie = recipie;
-  //   });
-  // }
-
   fetchDetails(): void {
-    const name = this.activatedRoute.snapshot.params['name'];
+    const id = this.activatedRoute.snapshot.params['id'];
 
-    // const recipieArr: any = [];
-
-    this.recipiesService.getRecipie(name).subscribe((recipie)=>{
+    this.recipiesService.getRecipie(id).subscribe((recipie) => {
       this.recipie = recipie;
       console.log(this.recipie);
-      
-    })
-
-    // this.recipiesService.getRecipies().subscribe((recipie) => {
-    //   recipieArr.push(recipie);
-
-    //   for (let i = 0; i < recipieArr.length; i++) {
-    //     const currentRecipie = recipieArr[i];
-    //     console.log(Object.values(currentRecipie));
-
-    //     for (const obj of Object.values(currentRecipie)) {
-    //       const recipie = obj as any;
-    //       if (recipie.title == name) {
-    //         this.recipie = obj;
-    //       }
-    //     }
-    //   }
-    // });
+    });
   }
- 
+
+  onDelete(id: string) {
+    const conformation = confirm(
+      'Are you sure you want to delete that recipie?'
+    );
+    if (conformation) {
+      this.recipiesService.removeRecipie(id);
+      this.router.navigate(['/recipies']);
+    }
+  }
 }

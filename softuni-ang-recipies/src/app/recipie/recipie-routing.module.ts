@@ -14,7 +14,7 @@ const routes: Routes = [
         component: RecipiesComponent
       },
       {
-        path: ':name',
+        path: ':id',
         component: RecipieDetailsComponent
       }
     ]

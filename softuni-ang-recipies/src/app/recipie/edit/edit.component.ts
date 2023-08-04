@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecipiesService } from 'src/app/recipies.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -13,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class EditComponent implements OnInit {
   //check later
   currentRecipie: any;
-  form: any;
+
   recipieId: string = '';
 
   constructor(
@@ -24,12 +23,18 @@ export class EditComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
+  form = this.fb.group({
+    title: ["", Validators.required],
+    cook: ["", Validators.required],
+    products: ["", Validators.required],
+    image: ["", Validators.required],
+    time: ["", Validators.required],
+  });
+
   ngOnInit(): void {
     this.recipieId = this.activatedRoute.snapshot.params['id'];
     this.recipieService.getRecipie(this.recipieId).subscribe((recipie) => {
       this.currentRecipie = recipie;
-      console.log();
-      
 
       this.form = this.fb.group({
         title: [this.currentRecipie.title, Validators.required],
@@ -46,17 +51,16 @@ export class EditComponent implements OnInit {
     try {
       this.recipieService.updateRecipie(
         this.recipieId,
-        title,
-        cook,
-        products,
-        image,
-        time
+        title!,
+        cook!,
+        products!,
+        image!,
+        time!
       );
       this.router.navigate(['/recipies']);
-      this.snackBar.open('Updated Succesfully', 'OK', {duration:3000})
-      
+      this.snackBar.open('Updated Succesfully', 'OK', { duration: 3000 });
     } catch (error) {
-      this.snackBar.open('Please try again', 'OK', {duration:3000})
+      this.snackBar.open('Please try again', 'OK', { duration: 3000 });
     }
   }
 }

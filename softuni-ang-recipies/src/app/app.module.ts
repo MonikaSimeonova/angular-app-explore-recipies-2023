@@ -34,10 +34,10 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     BrowserAnimationsModule,
     NotFoundPageModule,
     SharedModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    //provideFirestore(() => getFirestore())
   ],
   providers: [],//AngularFirestore
   bootstrap: [AppComponent],

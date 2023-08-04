@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Recipies } from './interfaces/recipies';
 import { dbUrl } from './shared/validators/constants';
-import { Database, set, ref, update } from '@angular/fire/database';
+import { Database, set, ref, update, remove } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +11,10 @@ export class RecipiesService {
   constructor(private http: HttpClient, public database: Database) {}
 
   getRecipies() {
-    return this.http.get<Recipies[]>(dbUrl);
+    return this.http.get<Recipies[]>(`${dbUrl}.json`);
   }
   getRecipie(id: string) {
-    const url = `https://softuni-angular-recipies-default-rtdb.firebaseio.com/recipies/${id}.json`;
+    const url = `${dbUrl}${id}.json`;
     return this.http.get(url);
   }
 
@@ -53,5 +53,9 @@ export class RecipiesService {
       image,
       time,
     });
+  }
+
+  removeRecipie(id: string){
+    remove(ref(this.database, 'recipies/' + id))
   }
 }
