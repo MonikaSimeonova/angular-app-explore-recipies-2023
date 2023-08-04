@@ -4,12 +4,14 @@ import { AddRecipieComponent } from './add-recipie/add-recipie.component';
 import { RecipieRoutingModule } from './recipie-routing.module';
 import { RecipieDetailsComponent } from './recipie-details/recipie-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
   declarations: [
   AddRecipieComponent,
-  RecipieDetailsComponent
+  RecipieDetailsComponent,
+  EditComponent
   ],
   imports: [
     CommonModule,

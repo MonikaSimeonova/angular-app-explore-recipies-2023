@@ -4,4 +4,6 @@ export interface Recipies {
     products: string,
     image: string,
     time: string,
+    owner: string,
+    id: string
 }

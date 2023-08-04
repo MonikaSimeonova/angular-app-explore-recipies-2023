@@ -16,6 +16,7 @@ export class RecipiesComponent implements OnInit {
     this.recipiesService.getRecipies().subscribe((recipies) => {
       
       this.recipiesList = recipies;
+      
       this.recipiesList = Object.values(this.recipiesList);
     });
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user';
+import { USER_KEY } from 'src/app/shared/validators/constants';
 import { AuthUserService } from 'src/app/user/auth-user.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user')!);
+    this.user = JSON.parse(localStorage.getItem(USER_KEY)!);
     console.log( this.user?.uid);
     
     if (this.user) {

@@ -1,1 +1,9 @@
-{}
+{
+  "hosting": [
+    {
+      "target": "softuni-ang-recipies",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

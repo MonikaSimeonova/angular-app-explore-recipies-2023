@@ -2,28 +2,56 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Recipies } from './interfaces/recipies';
 import { dbUrl } from './shared/validators/constants';
+import { Database, set, ref, update } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipiesService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public database: Database) {}
 
   getRecipies() {
     return this.http.get<Recipies[]>(dbUrl);
   }
-  // getRecipieDetails(id: string) {
-  //   const url = `https://softuni-angular-recipies-default-rtdb.firebaseio.com/recipies/${id}.json`;
-  //   return this.http.get<Recipies[]>(url);
-  // }
+  getRecipie(id: string) {
+    const url = `https://softuni-angular-recipies-default-rtdb.firebaseio.com/recipies/${id}.json`;
+    return this.http.get(url);
+  }
 
-  addRecipie(
+  createRecipie(
+    title: string,
+    cook: string,
+    products: string,
+    image: string,
+    time: string,
+    owner: string,
+    id: number
+  ) {
+    set(ref(this.database, 'recipies/' + id), {
+      title,
+      cook,
+      products,
+      image,
+      time,
+      owner: owner,
+      id: id
+    });
+  }
+
+  updateRecipie(
+    id: string,
     title: string,
     cook: string,
     products: string,
     image: string,
     time: string
   ) {
-    return this.http.post(dbUrl, { title, cook, products, image, time });
+    update(ref(this.database, 'recipies/' + id), {
+      title,
+      cook,
+      products,
+      image,
+      time,
+    });
   }
 }

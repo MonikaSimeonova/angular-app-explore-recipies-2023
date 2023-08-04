@@ -12,7 +12,8 @@ export class RecipieDetailsComponent implements OnInit {
 
   constructor(
     private recipiesService: RecipiesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    
   ) {}
   ngOnInit(): void {
     this.fetchDetails();
@@ -30,22 +31,29 @@ export class RecipieDetailsComponent implements OnInit {
   fetchDetails(): void {
     const name = this.activatedRoute.snapshot.params['name'];
 
-    const recipieArr: any = [];
+    // const recipieArr: any = [];
 
-    this.recipiesService.getRecipies().subscribe((recipie) => {
-      recipieArr.push(recipie);
+    this.recipiesService.getRecipie(name).subscribe((recipie)=>{
+      this.recipie = recipie;
+      console.log(this.recipie);
+      
+    })
 
-      for (let i = 0; i < recipieArr.length; i++) {
-        const currentRecipie = recipieArr[i];
-        console.log(Object.values(currentRecipie));
+    // this.recipiesService.getRecipies().subscribe((recipie) => {
+    //   recipieArr.push(recipie);
 
-        for (const obj of Object.values(currentRecipie)) {
-          const recipie = obj as any;
-          if (recipie.title == name) {
-            this.recipie = obj;
-          }
-        }
-      }
-    });
+    //   for (let i = 0; i < recipieArr.length; i++) {
+    //     const currentRecipie = recipieArr[i];
+    //     console.log(Object.values(currentRecipie));
+
+    //     for (const obj of Object.values(currentRecipie)) {
+    //       const recipie = obj as any;
+    //       if (recipie.title == name) {
+    //         this.recipie = obj;
+    //       }
+    //     }
+    //   }
+    // });
   }
+ 
 }

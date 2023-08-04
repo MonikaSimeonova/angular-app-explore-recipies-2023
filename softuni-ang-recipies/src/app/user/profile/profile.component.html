@@ -1,1 +1,17 @@
-<p>profile works!</p>
+<section class="recipies">
+    <h1>Welcome, {{userEmail}}</h1>
+    <p>This is a list of your recipies... Enjoy</p>
+    <div class="rec-container">
+        <div class="recipie" *ngFor="let recipie of ownerArr">
+            <div class="imgRec">
+                <img src="{{recipie.image}}" alt="{{recipie.title}}">
+            </div>
+            <div class="description">
+                <h5>{{recipie.title}}</h5>
+                <a routerLink="/recipie/{{recipie.id}}">Check it out</a>
+            </div>
+        </div>
+      
+    </div>
+
+</section>
