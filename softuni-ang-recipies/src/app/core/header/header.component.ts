@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { USER_KEY } from 'src/app/shared/validators/constants';
 import { AuthUserService } from 'src/app/user/auth-user.service';
@@ -11,22 +12,24 @@ import { AuthUserService } from 'src/app/user/auth-user.service';
 export class HeaderComponent implements OnInit {
   user: User | undefined;
   emailUser = '';
-  uid = '';
+  //uid = '';
+  isLoggedIn$!: Observable<boolean>;
 
   constructor(private authUser: AuthUserService) {}
 
-  get isLoggedIn(): boolean {
-    return this.authUser.isLogged();
-  }
+  // get isLoggedIn(): boolean {
+  //   return this.authUser.isLogged();
+  // }
 
   ngOnInit(): void {
+    this.isLoggedIn$ = this.authUser.isLoggedIn();
+
     this.user = JSON.parse(localStorage.getItem(USER_KEY)!);
-    console.log( this.user?.uid);
-    
+
     if (this.user) {
       this.emailUser = this.user?.email;
-      this.uid =  this.user?.uid
     }
+
   }
 
   onLogout() {

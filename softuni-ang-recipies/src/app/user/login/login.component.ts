@@ -30,5 +30,7 @@ export class LoginComponent {
   login() {
     const { email, password } = this.form.value;
     this.authUser.login(email!, password!);
+    this.router.navigate(['/home']);
+
   }
 }

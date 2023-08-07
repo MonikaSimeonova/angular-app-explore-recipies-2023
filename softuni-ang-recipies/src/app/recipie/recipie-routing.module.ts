@@ -5,6 +5,7 @@ import { RecipiesComponent } from '../recipies/recipies.component';
 import { RecipieDetailsComponent } from './recipie-details/recipie-details.component';
 import { AuthCanActivate } from '../core/guards/can.activate';
 import { EditComponent } from './edit/edit.component';
+import { AuthCanActivateOwner } from '../core/guards/can.activateOwner';
 
 const routes: Routes = [
   {
@@ -19,8 +20,8 @@ const routes: Routes = [
       }
     ]
   },
-  {path: 'add', component: AddRecipieComponent},
-  {path: 'edit/:id', component: EditComponent}//canActivate: [AuthCanActivate]
+  {path: 'add', component: AddRecipieComponent, canActivate: [AuthCanActivate]},
+  {path: 'edit/:id', component: EditComponent, canActivate: [AuthCanActivateOwner]}
  
 ];
 

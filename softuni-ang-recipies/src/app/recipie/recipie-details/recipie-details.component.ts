@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Recipies } from 'src/app/interfaces/recipies';
 import { RecipiesService } from 'src/app/recipies.service';
+import { USER_KEY } from 'src/app/shared/validators/constants';
 
 @Component({
   selector: 'app-recipie-details',
@@ -8,7 +11,11 @@ import { RecipiesService } from 'src/app/recipies.service';
   styleUrls: ['./recipie-details.component.css'],
 })
 export class RecipieDetailsComponent implements OnInit {
-  recipie: any;
+  recipie: Recipies | undefined;
+  user: User | undefined;
+  ownerId: string = '';
+  isOwner: boolean = false;
+  recipieOwner: string | undefined;
 
   constructor(
     private recipiesService: RecipiesService,
@@ -24,15 +31,27 @@ export class RecipieDetailsComponent implements OnInit {
 
     this.recipiesService.getRecipie(id).subscribe((recipie) => {
       this.recipie = recipie;
-      console.log(this.recipie);
+
+      this.recipieOwner = this.recipie.owner;
+      this.user = JSON.parse(localStorage.getItem(USER_KEY)!);
+
+      if (this.user) {
+        this.ownerId = this.user?.uid;
+        console.log(this.ownerId);
+
+        if (this.ownerId === this.recipieOwner) {
+          this.isOwner = true;
+          this.recipiesService.isOwner(this.isOwner);
+        }
+      }
     });
   }
 
-  onDelete(id: string) {
-    const conformation = confirm(
+  onDelete(id?: any) {
+    const confirmation = confirm(
       'Are you sure you want to delete that recipie?'
     );
-    if (conformation) {
+    if (confirmation) {
       this.recipiesService.removeRecipie(id);
       this.router.navigate(['/recipies']);
     }

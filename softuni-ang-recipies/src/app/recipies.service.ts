@@ -18,25 +18,25 @@ export class RecipiesService {
     return this.http.get(url);
   }
 
-  createRecipie(
-    title: string,
-    cook: string,
-    products: string,
-    image: string,
-    time: string,
-    owner: string,
-    id: number
-  ) {
-    set(ref(this.database, 'recipies/' + id), {
-      title,
-      cook,
-      products,
-      image,
-      time,
-      owner: owner,
-      id: id
-    });
-  }
+  // createRecipie(
+  //   title: string,
+  //   cook: string,
+  //   products: string,
+  //   image: string,
+  //   time: string,
+  //   owner: string,
+  //   id: number
+  // ) {
+  //   set(ref(this.database, 'recipies/' + id), {
+  //     title,
+  //     cook,
+  //     products,
+  //     image,
+  //     time,
+  //     owner: owner,
+  //     id: id
+  //   });
+  // }
 
   updateRecipie(
     id: string,
@@ -57,5 +57,15 @@ export class RecipiesService {
 
   removeRecipie(id: string){
     remove(ref(this.database, 'recipies/' + id))
+  }
+
+  isOwner(condition?: boolean): boolean{
+    console.log(condition);
+    
+    if(condition == true){
+      return true
+    }else{
+      return false;
+    }
   }
 }

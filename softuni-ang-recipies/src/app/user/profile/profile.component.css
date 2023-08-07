@@ -70,3 +70,8 @@
     background-color: rgb(141, 162, 177);
     box-shadow: 1px 1px #656565;
 }
+.noRecipies{
+    color: rgb(134, 50, 50);
+    font-size: 55px;
+    padding-top: 50px;
+}

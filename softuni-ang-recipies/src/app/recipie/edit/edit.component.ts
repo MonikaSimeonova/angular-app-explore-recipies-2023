@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipiesService } from 'src/app/recipies.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Recipies } from 'src/app/interfaces/recipies';
 
 @Component({
   selector: 'app-edit',
@@ -10,8 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
-  //check later
-  currentRecipie: any;
+  
+  currentRecipie: Recipies | undefined;
 
   recipieId: string = '';
 

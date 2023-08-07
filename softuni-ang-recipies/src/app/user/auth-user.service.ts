@@ -4,14 +4,19 @@ import { Router } from '@angular/router';
 import { User } from '../interfaces/user';
 import { USER_KEY } from '../shared/validators/constants';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BehaviorSubject, Subscription, pipe, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthUserService {
-  loggedIn = false;
+ loggedInGuard: boolean = false;
+
+  loggedIn$$: BehaviorSubject<boolean> =  new BehaviorSubject<boolean>(false);
+
   user: User | undefined;
-  
+
+
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -20,53 +25,63 @@ export class AuthUserService {
   ) {}
 
   login(email: string, password: string) {
-    this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.loadUser();
-        this.loggedIn = true;
-        this.router.navigate(['/home']);
-        console.log('Logged In');
-      })
-      .catch((e) => {
-        
-        this.snackBar.open("Wrong Email or Password", "OK", {duration: 5000, })
-      });
+    return (
+      this.afAuth
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          this.afAuth.authState.subscribe((user) => {
+            localStorage.setItem(USER_KEY, JSON.stringify(user));
+          });
+          this.loggedIn$$.next(true);
+          this.loggedInGuard = true;
+          this.snackBar.open('Logged in', '', {
+            duration: 2000
+          });
+        })
+        //.pipe(tap((user)=> this.user$$.next(user)))
+        .catch((e) => {
+          this.snackBar.open('Wrong Email or Password', 'OK', {
+            duration: 5000,
+          });
+        })
+    );
   }
 
-
-    register(email: string, password: string) {
-    this.afAuth
+  register(email: string, password: string) {
+    return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
-        this.loadUser();
-        this.loggedIn = true;
-        this.router.navigate(['/home']);
-        console.log('Registered');
+        this.afAuth.authState.subscribe((user) => {
+          localStorage.setItem(USER_KEY, JSON.stringify(user));
+        });
+        this.loggedIn$$.next(true);
+        this.loggedInGuard = true;
+        this.snackBar.open('Registred', '', {
+          duration: 2000
+        });
       })
       .catch((e) => {
-        
-        this.snackBar.open("Wrong Entered Data", "OK", {duration: 5000, })
+        this.snackBar.open('Wrong Entered Data', 'OK', { duration: 5000 });
       });
   }
-  loadUser() {
-    this.afAuth.authState.subscribe((user) => {
-      console.log(user);
-      
-      localStorage.setItem(USER_KEY, JSON.stringify(user));
-    });
-  }
+
+  // loadUser() {
+  //    this.afAuth.authState.subscribe((user) => {
+  //     localStorage.setItem(USER_KEY, JSON.stringify(user));
+  //   });
+  // }
 
   logOut() {
-    this.afAuth.signOut().then(() => {
-      console.log('Logged out');
+     this.afAuth.signOut().then(() => {
+      this.snackBar.open('Logged out!');
       localStorage.removeItem(USER_KEY);
-      this.loggedIn = false;
+      this.loggedIn$$.next(false);
+      this.loggedInGuard = false;
       this.router.navigate(['/home']);
     });
   }
 
-  isLogged(): boolean {
-    return this.loggedIn;
+  isLoggedIn() {
+    return this.loggedIn$$.asObservable();
   }
 }

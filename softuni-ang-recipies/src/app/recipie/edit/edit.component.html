@@ -2,28 +2,28 @@
     <h1>Update Recipie</h1>
     <form class="register-form" id="createRec" [formGroup]="form" (ngSubmit)="editRecipie()">
         <label for="name">Recipie Name</label>
-        <input type="text" placeholder="Enter recipie name" formControlName="title" value="{{currentRecipie.title}}">
+        <input type="text" placeholder="Enter recipie name" formControlName="title" >
         <ng-container *ngIf="form.get('title')?.touched">
             <p class="error" *ngIf="form.get('title')?.errors?.['required']">
                 Recipie Name Is Required
             </p>
         </ng-container>
         <label for="name">Recipie Photo</label>
-        <input type="url" placeholder="Add link to recipie photo" formControlName="image" value="{{currentRecipie.image}}">
+        <input type="url" placeholder="Add link to recipie photo" formControlName="image" >
         <ng-container *ngIf="form.get('image')?.touched">
             <p class="error" *ngIf="form.get('image')?.errors?.['required']">
                 Image Is Required
             </p>
         </ng-container>
         <label for="time">Cook time in minutes</label>
-        <input type="number" placeholder="How long until cooked" formControlName="time" value="{{currentRecipie.time}}">
+        <input type="number" placeholder="How long until cooked" formControlName="time" >
         <ng-container *ngIf="form.get('time')?.touched">
             <p class="error" *ngIf="form.get('time')?.errors?.['required']">
                 Cooking Time Is Required
             </p>
         </ng-container>
         <label for="name">Skills Level</label>
-        <input type="text" placeholder="Enter skills level" formControlName="cook" value="{{currentRecipie.cook}}">
+        <input type="text" placeholder="Enter skills level" formControlName="cook" >
         <ng-container *ngIf="form.get('cook')?.touched">
             <p class="error" *ngIf="form.get('cook')?.errors?.['required']">
                 Skills to Cook a Recipie Is Required
@@ -31,7 +31,7 @@
         </ng-container>
         <label for="rePassword">Ingredients</label>
         <textarea name="description" id="textarea-description-ingredients" cols="6" rows="5"
-            placeholder="What are the ingredients" formControlName="products" value="{{currentRecipie.products}}"></textarea>
+            placeholder="What are the ingredients" formControlName="products" ></textarea>
             <ng-container *ngIf="form.get('products')?.touched">
                 <p class="error" *ngIf="form.get('products')?.errors?.['required']">
                     Products Are Required

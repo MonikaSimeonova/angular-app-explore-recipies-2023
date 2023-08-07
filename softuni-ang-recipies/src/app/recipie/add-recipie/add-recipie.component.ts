@@ -42,27 +42,28 @@ export class AddRecipieComponent implements OnInit {
   }
 
   addRecipie() {
-    
-    
     const { title, cook, products, image, time } = this.form.value;
+    const id = Date.now();
     try {
-      this.recipiesService.createRecipie(
-        title!,
-        cook!,
-        products!,
-        image!,
-        time!,
-        this.uid, 
-        Date.now(),
-      );
-
-      this.snackBar.open(`Succesfully created new Recipie ${title}`, 'Great', {
-        duration: 3000,
+      set(ref(this.database, 'recipies/' + id), {
+        title,
+        cook,
+        products,
+        image,
+        time,
+        owner: this.uid,
+        id: id,
+      }).then(() => {
+        this.snackBar.open(
+          `Succesfully created new Recipie ${title}`,
+          'Great',
+          {
+            duration: 3000,
+          }
+        );
+        this.router.navigate(['/recipies']);
       });
-      this.router.navigate(['/recipies']);
     } catch (error) {
-      console.log(error);
-      
       this.snackBar.open(`Please try again to add your recipie`, 'OK', {
         duration: 4000,
       });

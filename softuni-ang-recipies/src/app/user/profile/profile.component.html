@@ -1,7 +1,7 @@
 <section class="recipies">
     <h1>Welcome, {{userEmail}}</h1>
     <p>This is a list of your recipies... Enjoy</p>
-    <div class="rec-container">
+    <div class="rec-container" *ngIf="ownerArr.length > 0">
         <div class="recipie" *ngFor="let recipie of ownerArr">
             <div class="imgRec">
                 <img src="{{recipie.image}}" alt="{{recipie.title}}">
@@ -13,5 +13,6 @@
         </div>
       
     </div>
+    <div *ngIf="ownerArr.length == 0" class="noRecipies">No recipies. You can start by adding</div>
 
 </section>

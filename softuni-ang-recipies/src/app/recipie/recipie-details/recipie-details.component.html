@@ -1,19 +1,21 @@
 <section class="recipie-details about-us">
-  <h1>{{ recipie.title }}</h1>
+  <h1>{{ recipie?.title }}</h1>
 
   <div class="container-details">
     <div class="image-border">
-      <img src="{{ recipie.image }}" alt="{{ recipie.title }}" />
+      <img src="{{ recipie?.image }}" alt="{{ recipie?.title }}" />
     </div>
     <div class="description-about-u">
       <h5>Ingridients</h5>
-      <p>{{ recipie.products }}</p>
+      <p>{{ recipie?.products }}</p>
       <h5>time</h5>
-      <p>{{ recipie.time }} minutes</p>
+      <p>{{ recipie?.time }} minutes</p>
       <h5>Skills level</h5>
-      <p>{{ recipie.cook }}</p>
-      <button routerLink="/edit/{{recipie.id}}" class="edit-btn">Edit</button>
-      <button class="delete-btn" (click)="onDelete(recipie.id)">Delete</button>
+      <p>{{ recipie?.cook }}</p>
+      <div *ngIf="isOwner">
+        <button routerLink="/edit/{{recipie?.id}}" class="edit-btn">Edit</button>
+        <button class="delete-btn" (click)="onDelete(recipie?.id)">Delete</button>
+      </div>
     </div>
   </div>
 </section>

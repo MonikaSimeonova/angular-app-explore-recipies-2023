@@ -7,11 +7,11 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthUserService } from 'src/app/user/auth-user.service';
+import { RecipiesService } from 'src/app/recipies.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthCanActivate implements CanActivate {
-  constructor(private authService: AuthUserService, private router: Router) {}
+export class AuthCanActivateOwner implements CanActivate {
+  constructor(private recipiesService: RecipiesService ,private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -22,7 +22,9 @@ export class AuthCanActivate implements CanActivate {
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
     
-    if (this.authService.loggedInGuard) {
+    if (this.recipiesService.isOwner() == true) {
+      console.log(this.recipiesService.isOwner());
+      
       return true;
     } else {
       this.router.navigate(['/404']);
