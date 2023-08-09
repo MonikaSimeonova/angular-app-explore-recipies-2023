@@ -7,6 +7,9 @@
             <p class="error" *ngIf="form.get('title')?.errors?.['required']">
                 Recipie Name Is Required
             </p>
+            <p class="error" *ngIf="form.get('title')?.errors?.['minlength']">
+                Recipie Name should be more than 3 characters long.
+            </p>
         </ng-container>
         <label for="name">Recipie Photo</label>
         <input type="url" placeholder="Add link to recipie photo" formControlName="image">
@@ -35,6 +38,9 @@
             <ng-container *ngIf="form.get('products')?.touched">
                 <p class="error" *ngIf="form.get('products')?.errors?.['required']">
                     Products Are Required
+                </p>
+                <p class="error" *ngIf="form.get('products')?.errors?.['minlength']">
+                    Products minimum length should be 10.
                 </p>
             </ng-container>
             <button [disabled]="form.invalid">Add</button>

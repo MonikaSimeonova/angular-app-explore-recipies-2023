@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Recipies } from './interfaces/recipies';
-import { dbUrl } from './shared/validators/constants';
+import { dbUrl } from './shared/constants';
 import { Database, set, ref, update, remove } from '@angular/fire/database';
 
 @Injectable({
@@ -59,13 +59,5 @@ export class RecipiesService {
     remove(ref(this.database, 'recipies/' + id))
   }
 
-  isOwner(condition?: boolean): boolean{
-    console.log(condition);
-    
-    if(condition == true){
-      return true
-    }else{
-      return false;
-    }
-  }
+  
 }

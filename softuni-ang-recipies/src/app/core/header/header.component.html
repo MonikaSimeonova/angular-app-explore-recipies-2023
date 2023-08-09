@@ -5,7 +5,7 @@
             <li><a routerLink="/home">Home</a></li>
             <li><a routerLink="/recipies">Recipies</a></li>
             <li><a routerLink="/add">Add</a></li>
-            <li><a routerLink="/profile">{{emailUser}}</a></li>
+            <li><a routerLink="/profile">Profile</a></li>
             <li class="reg-nav"><a (click)="onLogout()">Logout</a></li>
         </ul>
         <ul id="navbar" *ngIf="!(isLoggedIn$ | async)">

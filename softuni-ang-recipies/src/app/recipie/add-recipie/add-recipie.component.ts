@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RecipiesService } from 'src/app/recipies.service';
 import { Database, set, ref, update } from '@angular/fire/database';
-import { USER_KEY } from 'src/app/shared/validators/constants';
+import { USER_KEY } from 'src/app/shared/constants';
 import { User } from '@angular/fire/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -25,15 +25,15 @@ export class AddRecipieComponent implements OnInit {
   ) {}
 
   form = this.fb.group({
-    title: ['', Validators.required],
+    title: ['', [Validators.required, Validators.minLength(3)]],
     cook: ['', Validators.required],
-    products: ['', Validators.required],
+    products: ['', [Validators.required, Validators.minLength(10)]],
     image: ['', Validators.required],
     time: ['', Validators.required],
   });
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem(USER_KEY)!);
+    this.user = JSON.parse(sessionStorage.getItem(USER_KEY)!);
     console.log(this.user?.uid);
 
     if (this.user) {

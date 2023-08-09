@@ -2,21 +2,19 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/user';
-import { USER_KEY } from '../shared/validators/constants';
+import { USER_KEY } from '../shared/constants';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BehaviorSubject, Subscription, pipe, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthUserService {
- loggedInGuard: boolean = false;
+  loggedInGuard: boolean = false;
 
-  loggedIn$$: BehaviorSubject<boolean> =  new BehaviorSubject<boolean>(false);
+  loggedIn$$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   user: User | undefined;
-
-
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -25,56 +23,57 @@ export class AuthUserService {
   ) {}
 
   login(email: string, password: string) {
-    return (
-      this.afAuth
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          this.afAuth.authState.subscribe((user) => {
-            localStorage.setItem(USER_KEY, JSON.stringify(user));
-          });
-          this.loggedIn$$.next(true);
-          this.loggedInGuard = true;
-          this.snackBar.open('Logged in', '', {
-            duration: 2000
-          });
-        })
-        //.pipe(tap((user)=> this.user$$.next(user)))
-        .catch((e) => {
-          this.snackBar.open('Wrong Email or Password', 'OK', {
-            duration: 5000,
-          });
-        })
-    );
+    this.afAuth
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.afAuth.authState.subscribe((user) => {
+          sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+        });
+        this.loggedIn$$.next(true);
+        this.loggedInGuard = true;
+        this.snackBar.open('Logged in', '', {
+          duration: 2000,
+        });
+      })
+      .catch((e) => {
+        this.router.navigate(['/login'])
+        this.snackBar.open('Wrong Email or Password', 'OK', {
+          duration: 5000,
+        });
+      });
   }
 
   register(email: string, password: string) {
-    return this.afAuth
+    this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
         this.afAuth.authState.subscribe((user) => {
-          localStorage.setItem(USER_KEY, JSON.stringify(user));
+          sessionStorage.setItem(USER_KEY, JSON.stringify(user));
         });
         this.loggedIn$$.next(true);
         this.loggedInGuard = true;
         this.snackBar.open('Registred', '', {
-          duration: 2000
+          duration: 2000,
         });
       })
       .catch((e) => {
+        this.router.navigate(['/register'])
+
         this.snackBar.open('Wrong Entered Data', 'OK', { duration: 5000 });
       });
   }
 
   // loadUser() {
   //    this.afAuth.authState.subscribe((user) => {
-  //     localStorage.setItem(USER_KEY, JSON.stringify(user));
+  //     sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   //   });
   // }
 
   logOut() {
-     this.afAuth.signOut().then(() => {
-      this.snackBar.open('Logged out!');
-      localStorage.removeItem(USER_KEY);
+    this.afAuth.signOut().then(() => {
+      sessionStorage.removeItem(USER_KEY);
+      sessionStorage.clear();
+      this.snackBar.open('Logged out!', '', { duration: 2000 });
       this.loggedIn$$.next(false);
       this.loggedInGuard = false;
       this.router.navigate(['/home']);

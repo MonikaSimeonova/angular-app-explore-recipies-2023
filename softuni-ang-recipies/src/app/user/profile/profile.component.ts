@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { RecipiesService } from 'src/app/recipies.service';
-import { USER_KEY } from 'src/app/shared/validators/constants';
+import { USER_KEY } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   constructor(private recipiesService: RecipiesService) {}
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem(USER_KEY)!);
+    this.user = JSON.parse(sessionStorage.getItem(USER_KEY)!);
     console.log(this.user?.uid);
 
     if (this.user) {

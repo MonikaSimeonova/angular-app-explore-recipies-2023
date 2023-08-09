@@ -25,11 +25,11 @@ export class EditComponent implements OnInit {
   ) {}
 
   form = this.fb.group({
-    title: ["", Validators.required],
-    cook: ["", Validators.required],
-    products: ["", Validators.required],
-    image: ["", Validators.required],
-    time: ["", Validators.required],
+    title: ['', [Validators.required, Validators.minLength(3)]],
+    cook: ['', Validators.required],
+    products: ['', [Validators.required, Validators.minLength(10)]],
+    image: ['', Validators.required],
+    time: ['', Validators.required],
   });
 
   ngOnInit(): void {
@@ -38,9 +38,9 @@ export class EditComponent implements OnInit {
       this.currentRecipie = recipie;
 
       this.form = this.fb.group({
-        title: [this.currentRecipie.title, Validators.required],
+        title: [this.currentRecipie.title, [Validators.required, Validators.minLength(3)]],
         cook: [this.currentRecipie.cook, Validators.required],
-        products: [this.currentRecipie.products, Validators.required],
+        products: [this.currentRecipie.products, [Validators.required, Validators.minLength(10)]],
         image: [this.currentRecipie.image, Validators.required],
         time: [this.currentRecipie.time, Validators.required],
       });

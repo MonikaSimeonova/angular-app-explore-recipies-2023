@@ -1,6 +1,9 @@
 <section class="recipies">
     <h1>Explore the best recipies</h1>
     <p>Healthy, delicious and easy to make</p>
+    <div *ngIf="isLoading">
+        <app-loader />
+    </div>
     <div class="rec-container">
         <div class="recipie" *ngFor="let recipie of recipiesList">
             <div class="imgRec">
@@ -11,7 +14,7 @@
                 <a routerLink="/recipie/{{recipie.id}}">Check it out</a>
             </div>
         </div>
-      
+
     </div>
 
 </section>

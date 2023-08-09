@@ -3,7 +3,7 @@ import { User } from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipies } from 'src/app/interfaces/recipies';
 import { RecipiesService } from 'src/app/recipies.service';
-import { USER_KEY } from 'src/app/shared/validators/constants';
+import { USER_KEY } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-recipie-details',
@@ -16,6 +16,7 @@ export class RecipieDetailsComponent implements OnInit {
   ownerId: string = '';
   isOwner: boolean = false;
   recipieOwner: string | undefined;
+  
 
   constructor(
     private recipiesService: RecipiesService,
@@ -33,18 +34,18 @@ export class RecipieDetailsComponent implements OnInit {
       this.recipie = recipie;
 
       this.recipieOwner = this.recipie.owner;
-      this.user = JSON.parse(localStorage.getItem(USER_KEY)!);
+      this.user = JSON.parse(sessionStorage.getItem(USER_KEY)!);
 
       if (this.user) {
         this.ownerId = this.user?.uid;
-        console.log(this.ownerId);
 
         if (this.ownerId === this.recipieOwner) {
           this.isOwner = true;
-          this.recipiesService.isOwner(this.isOwner);
+          //this.recipiesService.isOwner(true);
         }
       }
     });
+    
   }
 
   onDelete(id?: any) {

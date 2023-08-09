@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { AuthUserService } from '../auth-user.service';
 import { Router } from '@angular/router';
-import { emailPattern } from 'src/app/shared/validators/constants';
+import { emailPattern } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-login',

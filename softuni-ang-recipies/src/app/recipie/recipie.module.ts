@@ -5,6 +5,7 @@ import { RecipieRoutingModule } from './recipie-routing.module';
 import { RecipieDetailsComponent } from './recipie-details/recipie-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { EditComponent } from './edit/edit.component';
   imports: [
     CommonModule,
     RecipieRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class RecipieModule { }

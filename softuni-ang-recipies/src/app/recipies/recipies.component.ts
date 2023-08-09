@@ -8,8 +8,9 @@ import { Recipies } from '../interfaces/recipies';
   styleUrls: ['./recipies.component.css'],
 })
 export class RecipiesComponent implements OnInit {
-  //interface add
-  recipiesList: Recipies[] = []; //check later
+  recipiesList: Recipies[] = []; 
+  isLoading: boolean = true;
+  
   constructor(private recipiesService: RecipiesService) {}
 
   ngOnInit(): void {
@@ -18,6 +19,8 @@ export class RecipiesComponent implements OnInit {
       this.recipiesList = recipies;
       
       this.recipiesList = Object.values(this.recipiesList);
-    });
+
+      this.isLoading = false;
+    })
   }
 }
