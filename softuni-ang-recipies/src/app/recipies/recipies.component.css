@@ -1,12 +1,13 @@
 .recipies {
-   width: 100%;
-  height: 90vh; 
+  width: 100%;
+  height: 90vh;
   margin: 0 auto;
   /* max-width: 1200px; */
   text-align: center;
-  background-color: #c9cbce;
+   background-color: #c9cbce; 
   padding-top: 10px;
   padding-bottom: 190px;
+  
 }
 
 .recipies h1 {
@@ -38,7 +39,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-left: 20px;
+  background-color: #c9cbce; 
+  width: 1198px;
 }
 
 .recipies .recipie .imgRec img {

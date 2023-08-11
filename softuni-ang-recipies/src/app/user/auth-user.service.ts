@@ -52,7 +52,7 @@ export class AuthUserService {
         });
         this.loggedIn$$.next(true);
         this.loggedInGuard = true;
-        this.snackBar.open('Registred', '', {
+        this.snackBar.open('Registered', '', {
           duration: 2000,
         });
       })

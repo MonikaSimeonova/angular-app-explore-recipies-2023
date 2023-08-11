@@ -3,14 +3,14 @@
     <nav>
         <ul id="navbar" *ngIf="isLoggedIn$ | async">
             <li><a routerLink="/home">Home</a></li>
-            <li><a routerLink="/recipies">Recipies</a></li>
+            <li><a routerLink="/recipies">Recipes</a></li>
             <li><a routerLink="/add">Add</a></li>
-            <li><a routerLink="/profile">Profile</a></li>
+            <li><a routerLink="/profile">My Profile</a></li>
             <li class="reg-nav"><a (click)="onLogout()">Logout</a></li>
         </ul>
         <ul id="navbar" *ngIf="!(isLoggedIn$ | async)">
             <li><a routerLink="/home">Home</a></li>
-            <li><a routerLink="/recipies">Recipies</a></li>
+            <li><a routerLink="/recipies">Recipes</a></li>
             <li><a routerLink="/login">Login</a></li>
             <li class="reg-nav"><a routerLink="/register">Register</a></li>
         </ul>

@@ -1,13 +1,4 @@
 {
-  "targets": {
-    "softuni-angular-recipies": {
-      "hosting": {
-        "softuni-ang-recipies": [
-          "softuni-angular-recipies"
-        ]
-      }
-    }
-  },
   "projects": {
     "default": "softuni-angular-recipies"
   }

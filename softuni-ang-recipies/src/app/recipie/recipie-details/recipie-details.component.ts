@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '@angular/fire/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipies } from 'src/app/interfaces/recipies';
 import { RecipiesService } from 'src/app/recipies.service';
@@ -21,7 +22,8 @@ export class RecipieDetailsComponent implements OnInit {
   constructor(
     private recipiesService: RecipiesService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.fetchDetails();
@@ -55,6 +57,7 @@ export class RecipieDetailsComponent implements OnInit {
     if (confirmation) {
       this.recipiesService.removeRecipie(id);
       this.router.navigate(['/recipies']);
+      this.snackBar.open('Deleted', '', {duration: 2000})
     }
   }
 }
