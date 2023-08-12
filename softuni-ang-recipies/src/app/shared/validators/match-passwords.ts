@@ -1,4 +1,3 @@
-import { group } from '@angular/animations';
 import { FormGroup, ValidatorFn } from '@angular/forms';
 
 export function matchPasswordsValidator(

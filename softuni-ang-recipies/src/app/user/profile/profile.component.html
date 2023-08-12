@@ -1,6 +1,7 @@
 <section class="recipies">
     <h1>Welcome, {{userEmail}}</h1>
     <p>This is a list of your recipes... Enjoy</p>
+    <p>Current recipes: {{ownerArr.length}}</p>
     <div class="rec-container" *ngIf="ownerArr.length > 0">
         <div class="recipie" *ngFor="let recipie of ownerArr">
             <div class="imgRec">

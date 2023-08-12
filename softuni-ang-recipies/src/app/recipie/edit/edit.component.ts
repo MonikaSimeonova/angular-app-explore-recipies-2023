@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecipiesService } from 'src/app/recipies.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Recipies } from 'src/app/interfaces/recipies';
+import { USER_KEY } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-edit',
@@ -11,7 +12,6 @@ import { Recipies } from 'src/app/interfaces/recipies';
   styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
-  
   currentRecipie: Recipies | undefined;
 
   recipieId: string = '';
@@ -37,10 +37,23 @@ export class EditComponent implements OnInit {
     this.recipieService.getRecipie(this.recipieId).subscribe((recipie) => {
       this.currentRecipie = recipie;
 
+      if (
+        this.currentRecipie.owner !==
+        JSON.parse(sessionStorage.getItem(USER_KEY)).uid
+      ) {
+        this.router.navigate(['404']);
+      }
+
       this.form = this.fb.group({
-        title: [this.currentRecipie.title, [Validators.required, Validators.minLength(3)]],
+        title: [
+          this.currentRecipie.title,
+          [Validators.required, Validators.minLength(3)],
+        ],
         cook: [this.currentRecipie.cook, Validators.required],
-        products: [this.currentRecipie.products, [Validators.required, Validators.minLength(10)]],
+        products: [
+          this.currentRecipie.products,
+          [Validators.required, Validators.minLength(10)],
+        ],
         image: [this.currentRecipie.image, Validators.required],
         time: [this.currentRecipie.time, Validators.required],
       });

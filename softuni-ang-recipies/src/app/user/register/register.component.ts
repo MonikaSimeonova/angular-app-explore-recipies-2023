@@ -17,7 +17,6 @@ export class RegisterComponent {
     private router: Router
   ) {}
 
-  //add email validator
   form = this.fb.group({
     email: ['', [Validators.required, Validators.pattern(emailPattern)]],
     passGroup: this.fb.group(

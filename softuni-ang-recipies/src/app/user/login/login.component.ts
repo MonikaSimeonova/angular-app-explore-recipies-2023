@@ -10,6 +10,13 @@ import { emailPattern } from 'src/app/shared/constants';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+
+  constructor(
+    private fb: FormBuilder,
+    private authUser: AuthUserService,
+    private router: Router
+  ) {}
+  
   form = this.fb.group({
     email: [
       '',
@@ -21,13 +28,12 @@ export class LoginComponent {
     password: ['', Validators.required],
   });
 
-  constructor(
-    private fb: FormBuilder,
-    private authUser: AuthUserService,
-    private router: Router
-  ) {}
+
 
   login() {
+    if (this.form.invalid) {
+      return;
+    }
     const { email, password } = this.form.value;
     this.authUser.login(email!, password!);
     this.router.navigate(['/home']);

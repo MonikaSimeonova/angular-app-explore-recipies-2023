@@ -12,11 +12,7 @@
       </p>
     </ng-container>
     <label for="password">Password</label>
-    <input
-      type="password"
-      placeholder="Enter password"
-      formControlName="password"
-    />
+    <input type="password" placeholder="Enter password" formControlName="password" />
 
     <ng-container *ngIf="form.get('password')?.touched">
       <p class="error" *ngIf="form.get('password')?.errors?.['required']">
@@ -25,9 +21,7 @@
     </ng-container>
 
     <button [disabled]="form.invalid">Login</button>
-    <label for="text"
-      >Don't have an account?
-      <a class="to-btn-reg" routerLink="/register">Register</a></label
-    >
+    <label for="text">Don't have an account?
+      <a class="to-btn-reg" routerLink="/register">Register</a></label>
   </form>
 </section>
